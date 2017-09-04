@@ -4,39 +4,31 @@ let ESC = "\u{1B}["
 let isTerminalApp = ProcessInfo.processInfo.environment["TERM_PROGRAM"] == "Apple_Terminal"
 
 public struct AnsiEscapes {
-	public static func cursorTo(x: Int? = nil, y: Int? = nil) -> String {
-		if x == nil && y == nil {
-			return "\(ESC)H"
-		}
-		
-		if y == nil {
-			return "\(ESC)\(x! + 1)G"
-		}
-		
-		return "\(ESC)\(y! + 1);\(x! + 1)H"
+	public static func cursorTo(x: Int) -> String {
+		return "\(ESC)\(x + 1)G"
 	}
-	
-	public static func cursorMove(x: Int? = nil, y: Int? = nil) -> String {
-		if x == nil || y == nil {
+
+	public static func cursorTo(x: Int, y: Int) -> String {
+		return "\(ESC)\(y + 1);\(x + 1)H"
+	}
+
+	public static func cursorMove(x: Int) -> String {
+		if x < 0 {
+			return "\(ESC)\(-x)D"
+		} else if x > 0 {
+			return "\(ESC)\(x)C"
+		} else {
 			return ""
 		}
-		
-		var ret = ""
-		
-		if x! < 0 {
-			ret += "\(ESC)\(-x!)D"
-		}
-		
-		if x! > 0 {
-			ret += "\(ESC)\(x!)C"
-		}
-		
-		if y! < 0 {
-			ret += "\(ESC)\(-y!)A"
-		}
-		
-		if y! > 0 {
-			ret += "\(ESC)\(y!)B"
+	}
+
+	public static func cursorMove(x: Int, y: Int) -> String {
+		var ret = cursorMove(x: x)
+
+		if y < 0 {
+			ret += "\(ESC)\(-y)A"
+		} else if y > 0 {
+			ret += "\(ESC)\(y)B"
 		}
 		
 		return ret

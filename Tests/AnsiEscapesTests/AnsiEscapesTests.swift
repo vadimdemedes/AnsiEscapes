@@ -3,13 +3,11 @@ import AnsiEscapes
 
 class AnsiEscapesTests: XCTestCase {
 	func testCursorTo() {
-		XCTAssertEqual(AnsiEscapes.cursorTo(), "\u{1B}[H")
 		XCTAssertEqual(AnsiEscapes.cursorTo(x: 1), "\u{1B}[2G")
 		XCTAssertEqual(AnsiEscapes.cursorTo(x: 1, y: 1), "\u{1B}[2;2H")
 	}
 	
 	func testCursorMove() {
-		XCTAssertEqual(AnsiEscapes.cursorMove(), "")
 		XCTAssertEqual(AnsiEscapes.cursorMove(x: -1, y: 0), "\u{1B}[1D")
 		XCTAssertEqual(AnsiEscapes.cursorMove(x: 1, y: 0), "\u{1B}[1C")
 		XCTAssertEqual(AnsiEscapes.cursorMove(x: 0, y: -1), "\u{1B}[1A")
