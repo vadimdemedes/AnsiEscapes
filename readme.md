@@ -2,7 +2,7 @@
 
 > [ANSI escape codes](http://www.termsys.demon.co.uk/vtansi.htm) for manipulating the terminal
 
-Port of [ansi-escapes](https://github.com/sindresorhus/ansi-escapes) by [Sindre Sorhus](https://github.com/sindresorhus).
+Port to Swift of [ansi-escapes](https://github.com/sindresorhus/ansi-escapes) by [Sindre Sorhus](https://github.com/sindresorhus).
 
 
 ## Install
